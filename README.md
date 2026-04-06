@@ -1,5 +1,6 @@
 # Petshop
 
 
-<img width="1596" height="763" alt="image" src="https://github.com/user-attachments/assets/77751cb2-bce4-48e1-8bbc-4f6f76356fb2" />
+<img width="1588" height="775" alt="image" src="https://github.com/user-attachments/assets/c352d10d-f512-49a9-a023-4ed57ce91c9e" />
+
 
