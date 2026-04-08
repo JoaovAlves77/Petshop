@@ -1,43 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PetShopTeuz - Login</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetShopTeuz</title>
+
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2D9CDB, #6B4F3B);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  width: 350px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #6B4F3B;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1B6CA8, #2D9CDB);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link {
+  display: block;
+  margin: 10px 0;
+  font-size: 13px;
+  color: #1B6CA8;
+  cursor: pointer;
+}
+
+.register {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-  <div class="card">
+<div class="card">
 
-    <div class="logo">
-      🐾 <span>PetShopTeuz</span>
-    </div>
+  <div class="logo">🐾 PetShopTeuz</div>
 
+  <!-- LOGIN -->
+  <div id="login">
     <h2>Bem-vindo!</h2>
-    <p>Cuide do seu melhor amigo com a gente ❤️</p>
+    <p>Cuide do seu melhor amigo ❤️</p>
 
-    <div class="input-group">
-      <input type="email" id="email" placeholder="Seu e-mail">
-    </div>
-
-    <div class="input-group senha-box">
-      <input type="password" id="senha" placeholder="Sua senha">
-      <span class="toggle" onclick="toggleSenha()">👁</span>
-    </div>
-
-    <a href="#" class="link">Esqueci minha senha</a>
-
-    <button id="loginBtn">Entrar</button>
-
-    <div class="register">
-      Não tem conta? <a href="#">Criar agora</a>
-    </div>
-
-  </div>
+   <div class="input-group">
+    <input type="email" id="loginEmail" placeholder=" ">
+    <label>Email</label>
 </div>
 
-<script src="script.js"></script>
+<div class="input-group">
+  <input type="password" id="loginSenha" placeholder=" ">
+  <label>Senha</label>
+</div>
+
+    <span class="link" onclick="mostrar('esqueci')">Esqueci minha senha</span>
+
+    <button onclick="login()">Entrar</button>
+
+    <div class="register">
+      Não tem conta? <span class="link" onclick="mostrar('cadastro')">Criar agora</span>
+    </div>
+  </div>
+
+  <!-- CADASTRO -->
+  <div id="cadastro" class="hidden">
+    <h2>Criar Conta</h2>
+    <p>Cadastre-se agora 🐶</p>
+
+    <input type="text" id="nome" placeholder="Seu nome">
+    <input type="email" id="cadEmail" placeholder="Seu e-mail">
+    <input type="password" id="cadSenha" placeholder="Sua senha">
+
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <span class="link" onclick="mostrar('login')">Voltar para login</span>
+  </div>
+
+  <!-- ESQUECI SENHA -->
+  <div id="esqueci" class="hidden">
+    <h2>Recuperar Senha</h2>
+    <p>Digite seu e-mail 📧</p>
+
+    <input type="email" id="recEmail" placeholder="Seu e-mail">
+
+    <button onclick="recuperar()">Enviar</button>
+
+    <span class="link" onclick="mostrar('login')">Voltar para login</span>
+  </div>
+
+</div>
+
+<script>
+// Trocar telas
+function mostrar(tela) {
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("cadastro").classList.add("hidden");
+  document.getElementById("esqueci").classList.add("hidden");
+
+  document.getElementById(tela).classList.remove("hidden");
+}
+
+// Login
+function login() {
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginSenha").value;
+
+  if (!email || !senha) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  alert("Login realizado com sucesso!");
+}
+
+// Cadastro
+function cadastrar() {
+  const nome = document.getElementById("nome").value;
+  const email = document.getElementById("cadEmail").value;
+  const senha = document.getElementById("cadSenha").value;
+
+  if (!nome || !email || !senha) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  alert("Conta criada com sucesso!");
+  mostrar('login');
+}
+
+// Recuperar senha
+function recuperar() {
+  const email = document.getElementById("recEmail").value;
+
+  if (!email) {
+    alert("Digite seu e-mail!");
+    return;
+  }
+
+  alert("Link de recuperação enviado!");
+  mostrar('login');
+}
+</script>
+
 </body>
 </html>
